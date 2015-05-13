@@ -21,16 +21,16 @@ module Main
       corners = ["T1", "T3", "B1", "B3"]
       sides = ["T2", "B2", "M1", "M3"]
       move = possible_moves.sample
-      # if page.(_ai_moves.to_a).count < 2
-      #   move = respond_to_side(last_move) if sides.include?(last_move)
-      #   move = respond_to_corner(last_move) if corners.include?(last_move)
-      #   move = respond_to_side_blitz(possible_moves, sides, corners) if (sides & possible_moves).count == 2
-      #   move = sides.sample if (corners & possible_moves).count == 2
-      #   move = respond_to_knight_blitz(possible_moves, sides, corners) if (sides & possible_moves).count == 3 && (corners & possible_moves).count == 3
-      #   move = corners.sample if last_move == "M2"
-      # end
+      if (page._ai_moves.to_a).count < 2
+        move = respond_to_side(last_play) if sides.include?(last_play)
+        move = respond_to_corner(last_play) if corners.include?(last_play)
+        move = respond_to_side_blitz(possible_moves, sides, corners) if (sides & possible_moves).count == 2
+        move = sides.sample if (corners & possible_moves).count == 2
+        move = respond_to_knight_blitz(possible_moves, sides, corners) if (sides & possible_moves).count == 3 && (corners & possible_moves).count == 3
+        move = corners.sample if last_play == "M2"
+      end
       move = "M2" if possible_moves.include?("M2")
-      move = for_the_win || potential_win(possible_moves) || move
+      move = for_the_win(possible_moves) || potential_win(possible_moves) || move
       page._ai_moves << move
       page._moves << move
     end
@@ -91,7 +91,7 @@ module Main
     move
   end
 
-  def for_the_win
+  def for_the_win(possible_moves)
     move = nil
     winning_moves = [["T1", "T2", "T3"], ["B1", "B2", "B3"], ["M1", "M2", "M3"],
                      ["T1", "M1", "B1"], ["T2", "M2", "B2"], ["T3", "M3", "B3"],
