@@ -1,0 +1,27 @@
+<:Title>
+ NIGHTMARE
+
+<:Body>
+  <h1>Unbeatable Tic Tac Toe</h1>
+
+  {{ ['T', 'M', 'B'].each do |r| }}
+  <p>
+    {{ ['1','2','3'].each do |c| }}
+      {{if _ai_moves.include?(r + c)}}
+      <span>X</span>
+      {{elsif _player_moves.include?(r + c)}}
+      <span>O</span>
+      {{else}}
+      <span>_</span>
+      {{end}}
+    {{end}}
+    </p>
+    {{end}}
+
+  <form e-submit="add_move" role="form">
+    <div class="form-group">
+      <label>What's your move?</label>
+      <input class="form-control" type="text" value="{{ page._move }}" />
+    </div>
+  </form>
+
