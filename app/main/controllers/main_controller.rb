@@ -8,15 +8,6 @@ module Main
 
     end
 
-    def add_move
-      total_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"]
-      page._moves << page._move
-      page._player_moves << page._move
-      possible_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"] - _moves.to_a
-      add_ai_move(possible_moves, page._move)
-      page._move = ''
-    end
-
     def add_ai_move(possible_moves, last_play)
       corners = ["T1", "T3", "B1", "B3"]
       sides = ["T2", "B2", "M1", "M3"]
@@ -105,12 +96,14 @@ module Main
     end
     move
   end
-
-    def over?
-    possible_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"] - _moves.to_a
-    possible_moves.empty?
-  end
-
+    def add_move
+      total_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"]
+      page._moves << page._move
+      page._player_moves << page._move
+      possible_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"] - _moves.to_a
+      add_ai_move(possible_moves, page._move)
+      page._move = ''
+    end
   def winner
     winning_moves = [["T1", "T2", "T3"], ["B1", "B2", "B3"], ["M1", "M2", "M3"],
                      ["T1", "M1", "B1"], ["T2", "M2", "B2"], ["T3", "M3", "B3"],
