@@ -106,6 +106,28 @@ module Main
     move
   end
 
+    def over?
+    possible_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"] - _moves.to_a
+    possible_moves.empty?
+  end
+
+  def winner
+    winning_moves = [["T1", "T2", "T3"], ["B1", "B2", "B3"], ["M1", "M2", "M3"],
+                     ["T1", "M1", "B1"], ["T2", "M2", "B2"], ["T3", "M3", "B3"],
+                     ["T1", "M2", "B3"], ["T3", "M2", "B1"]]
+
+    winning_moves.each do |w|
+      if (_ai_moves.to_a & w).sort == w.sort
+        #puts "You Lost!"
+        return "AI"
+      elsif (_player_moves.to_a & w).sort == w.sort
+        #puts "You Won!"
+        return "Human"
+      end
+    end
+    return nil
+  end
+
     private
 
     # The main template contains a #template binding that shows another

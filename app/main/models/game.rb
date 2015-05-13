@@ -54,21 +54,21 @@
 #     end
 #   end
 
-#   def over?
-#     @board.possible_moves.empty?
-#   end
+  def over?
+    @board.possible_moves.empty?
+  end
 
-#   def winner
-#     @board.winning_moves.each do |w|
-#       if (@ai.moves & w).sort == w.sort
-#         #puts "You Lost!"
-#         return @ai
-#       elsif (@board.player_moves & w).sort == w.sort
-#         #puts "You Won!"
-#         return @human
-#       end
-#     end
-#     return nil
-#   end
+  def winner
+    @board.winning_moves.each do |w|
+      if (@ai.moves & w).sort == w.sort
+        #puts "You Lost!"
+        return @ai
+      elsif (@board.player_moves & w).sort == w.sort
+        #puts "You Won!"
+        return @human
+      end
+    end
+    return nil
+  end
 
 # end

@@ -25,3 +25,8 @@
     </div>
   </form>
 
+  {{ if winner || over? }}
+    <h1>YOU LOSE.</h1>
+  {{else}}
+    <p>You are playing against a computer.</p>
+  {{end}}
