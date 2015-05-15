@@ -5,7 +5,7 @@ module Main
     model :page
 
     def index
-
+        
     end
 
     def add_ai_move(possible_moves, last_play)
@@ -96,12 +96,12 @@ module Main
     end
     move
   end
-    def add_move
+    def add_move(move)
       total_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"]
-      page._moves << page._move
-      page._player_moves << page._move
+      page._moves << move
+      page._player_moves << move
       possible_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"] - _moves.to_a
-      add_ai_move(possible_moves, page._move)
+      add_ai_move(possible_moves, move)
       page._move = ''
     end
   def winner
@@ -121,6 +121,17 @@ module Main
     return nil
   end
 
+  def over?
+      possible_moves = ["T1", "T2", "T3", "M1", "M2", "M3", "B1", "B2", "B3"] - _moves.to_a
+   possibilities = possible_moves - _moves.to_a
+   possibilities.empty?
+  end
+
+  def clear_moves
+    _moves.clear
+    _ai_moves.clear
+    _player_moves.clear
+  end
     private
 
     # The main template contains a #template binding that shows another

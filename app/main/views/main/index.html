@@ -3,30 +3,23 @@
 
 <:Body>
   <h1>Unbeatable Tic Tac Toe</h1>
-
   {{ ['T', 'M', 'B'].each do |r| }}
   <p>
     {{ ['1','2','3'].each do |c| }}
       {{if _ai_moves.include?(r + c)}}
-      <span>X</span>
+      <span class = "ai">X</span>
       {{elsif _player_moves.include?(r + c)}}
-      <span>O</span>
+      <span class="player">O</span>
       {{else}}
-      <span>_</span>
+      <span e-click="add_move(r+c)">_</span>
       {{end}}
     {{end}}
     </p>
     {{end}}
 
-  <form e-submit="add_move" role="form">
-    <div class="form-group">
-      <label>What's your move?</label>
-      <input class="form-control" type="text" value="{{ page._move }}" />
-    </div>
-  </form>
-
   {{ if winner || over? }}
-    <h1>YOU LOSE.</h1>
+    <h1 e-click="clear_moves">YOU LOSE. SUFFER ONCE AGAIN?</h1>
   {{else}}
     <p>You are playing against a computer.</p>
   {{end}}
+
